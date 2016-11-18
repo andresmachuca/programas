@@ -3,52 +3,122 @@
   <title>Peso en otros planetas</title>
   <style type="text/css">
   body {
-    background-color: white;
-    color: blue;
+    background-color: darkblue;
+    color: black;
     font-size: 20;
+    background-image: url(Sistema_Solar.jpg);
+  }
+  #caja1 {
+    position: absolute;
+    left: 30%;
+    top: 10%;
+    background-color: yellow;
+    padding: 20px;
+    border-color: yellow
+    border_style: solid;
+    border-width: thick;
+    front-family: courier;
+    box-shadow: 10px 10px 5px black;
+  }
+  #boton {
+    width: 100px;
+    height: 50px;
+    background-color: purple;
+    color: white;
   }
   </style>
+  <script>
+
+  function calculo(){
+
+    usuario = document.getElementById('peso').value;
+    //alert(usuario);
+    if (document.getElementById('mercurio').checked == true){
+      planeta = 1;
+    }
+    if (document.getElementById('venus').checked == true){
+      planeta = 2;
+    }
+    if (document.getElementById('marte').checked == true){
+      planeta = 3;
+    }
+    if (document.getElementById('jupiter').checked == true){
+      planeta = 4;
+    }
+    if (document.getElementById('saturno').checked == true){
+      planeta = 5;
+    }
+    if (document.getElementById('urano').checked == true){
+      planeta = 6;
+    }
+    if (document.getElementById('neptuno').checked == true){
+      planeta = 7;
+    }
+
+    peso = parseInt(usuario);
+//alert(planeta);
+  var gravedad_tierra = 9.8;
+  var gravedad_marte = 3.7;
+  var gravedad_jupiter = 22.9;
+  var gravedad_mercurio = 3.7;
+  var gravedad_neptuno = 11.15;
+  var gravedad_urano = 8.69;
+  var gravedad_saturno = 10.44;
+  var gravedad_venus = 8.87;
+  var peso_final;
+  var nombre;
+
+  if (planeta == 1) {
+     peso_final = peso * gravedad_marte / gravedad_tierra;
+     nombre = "Mercurio";
+  }
+  else if (planeta == 2) {
+     peso_final = peso * gravedad_jupiter / gravedad_tierra;
+     nombre = "Venus";
+  }
+  else if (planeta == 3) {
+     peso_final = peso * gravedad_mercurio / gravedad_tierra;
+     nombre = "Marte";
+  }
+  else if (planeta == 4) {
+     peso_final = peso * gravedad_venus / gravedad_tierra;
+     nombre = "Jupiter";
+  }
+  else if (planeta == 5) {
+     peso_final = peso * gravedad_saturno / gravedad_tierra;
+     nombre = "Saturno";
+  }
+  else if (planeta == 6) {
+     peso_final = peso * gravedad_urano / gravedad_tierra;
+     nombre = "Urano";
+  }
+  else if (planeta == 7) {
+     peso_final = peso * gravedad_neptuno / gravedad_tierra;
+     nombre = "Neptuno";
+  }
+
+  peso_final = parseInt(peso_final);
+  document.getElementById("resultado").innerHTML="Tu peso en <strong>" + nombre + "</strong> es igual a " + peso_final + "Kg";
+}
+  </script>
 </head>
 <body>
+
+    <div id=caja1>
+
   <h1>Tu peso en otros planetas</h1>
   <p> Adivina tu peso en otros planetas </p>
-<script type="text/javascript">
-
-  var usuario = prompt("Cual es tu peso?");
-
-var gravedad_tierra = 9.8;
-var gravedad_marte = 3.7;
-var gravedad_jupiter = 22.9;
-var gravedad_mercurio = 3.7;
-var gravedad_neptuno = 11.15;
-var gravedad_urano = 8.69;
-var gravedad_saturno = 10.44;
-var gravedad_venus = 8.87;
-
-
-  var peso_marte = (usuario * gravedad_marte) / gravedad_tierra;
-  var peso_jupiter = (usuario * gravedad_jupiter) / gravedad_tierra;
-  var peso_mercurio = (usuario * gravedad_mercurio) / gravedad_tierra;
-  var peso_venus = (usuario * gravedad_venus) / gravedad_tierra;
-  var peso_saturno = (usuario * gravedad_saturno) / gravedad_tierra;
-  var peso_urano = (usuario * gravedad_urano) / gravedad_tierra;
-  var peso_neptuno = (usuario * gravedad_neptuno) / gravedad_tierra;
-
-peso_mercurio = parseInt(peso_mercurio);
-peso_venus = parseInt(peso_venus);
-peso_marte = parseInt(peso_marte);
-peso_jupiter = parseInt(peso_jupiter);
-peso_saturno = parseInt(peso_saturno);
-peso_urano = parseInt(peso_urano);
-peso_neptuno = parseInt(peso_neptuno);
-
-document.write ("Tu peso en <strong>Mercurio</strong> es igual a " + peso_mercurio + "Kg" + "<br>");
-document.write ("Tu peso en <strong>Venus</strong> es igual a " + peso_venus + "Kg" + "<br>");
-document.write ("Tu peso en <strong>Marte</strong> es igual a " + peso_marte + "Kg" + "<br>");
-document.write ("Tu peso en <strong>Jupiter</strong> es igual a " + peso_jupiter + "Kg" + "<br>");
-document.write ("Tu peso en <strong>Saturno</strong> es igual a " + peso_saturno + "Kg" + "<br>");
-document.write ("Tu peso en <strong>Urano</strong> es igual a " + peso_urano + "Kg" + "<br>");
-document.write ("Tu peso en <strong>Neptuno</strong> es igual a " + peso_neptuno + "Kg" + "<br>");
-</script>
+  <p>Ingresa tu peso <input type="text" id="peso"> </p>
+    <p>En que planeta deseas calcular tu peso?</p>
+    <p> <input type="radio" id="mercurio" name="planeta" value="1"> Mercurio<br>
+        <input type="radio" id="venus" name="planeta" value="2"> Venus<br>
+        <input type="radio" id="marte" name="planeta" value="3"> Marte<br>
+        <input type="radio" id="jupiter" name="planeta" value="4"> Jupiter<br>
+        <input type="radio" id="saturno" name="planeta" value="5"> Saturno<br>
+        <input type="radio" id="urano" name="planeta" value="6"> Urano<br>
+        <input type="radio" id="neptuno" name="planeta" value="7"> Neptuno</p>
+        <p><input type="button" id="boton" value="calcular" onclick="calculo()"></p>
+      <p id = "resultado"></p>
 </body>
+</div>
 </html>
